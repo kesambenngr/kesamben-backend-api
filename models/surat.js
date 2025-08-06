@@ -49,7 +49,7 @@ const SuratPermohonanSchema = new Schema({
     // required: true,
   },
   pemohonLuarDesa: {
-    namaLengkap: { type: String, required: true },
+    namaLengkap: { type: String },
     nik: { type: String, minlength: 16, maxlength: 16 },
     alamat: {
       dusun: { type: String },

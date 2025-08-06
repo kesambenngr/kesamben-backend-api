@@ -22,6 +22,20 @@ const {
   deleteDataTambahan,
   getDataTambahanById,
 } = require("../controllers/suratController");
+const {
+  createKelahiran,
+  getAllKelahiran,
+  getKelahiranById,
+  deleteKelahiran,
+  updateKelahiran,
+} = require("../controllers/kelahiranController");
+const {
+  createKematian,
+  getAllKematian,
+  getKematianById,
+  deleteKematian,
+  updateKematian,
+} = require("../controllers/kematianController");
 
 router.post("/suratmasuk", createSuratMasuk); // Membuat data surat baru
 router.get("/suratmasuk", getSuratMasuk); // Mendapatkan semua data surat
@@ -47,6 +61,20 @@ router.get("/datatambahan", getDataTambahan); // mendapatkan semua data tambahan
 router.get("/datatambahan/:id", getDataTambahanById); // mendapatkan data
 router.put("/datatambahan/:id", updateDataTambahan); // update data tambahan dan jenis surat
 router.delete("/datatambahan/:id", deleteDataTambahan); // menghapus data tambahan
+
+//router surat kelahiran
+router.post("/suratkelahiran", createKelahiran); //insert surat kelahiran
+router.get("/suratkelahiran", getAllKelahiran); // mendapatkan semua data kelahiran
+router.get("/suratkelahiran/:id", getKelahiranById); // mendapatkan data kelahiran by id
+router.put("/suratkelahiran/:id", updateKelahiran); // update data kelahiran
+router.delete("/suratkelahiran/:id", deleteKelahiran); // menghapus data kelahiran
+
+//router surat kematian
+router.post("/suratkematian", createKematian); //insert surat kematian
+router.get("/suratkematian", getAllKematian); // mendapatkan semua data kemat
+router.get("/suratkematian/:id", getKematianById); // mendapatkan data kematian
+router.put("/suratkematian/:id", updateKematian); // update data kematian
+router.delete("/suratkematian/:id", deleteKematian); // menghapus data kematian
 
 module.exports = router;
 // Note: Ensure that the suratController.js file is correctly implemented with the necessary functions.

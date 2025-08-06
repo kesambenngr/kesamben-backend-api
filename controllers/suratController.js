@@ -240,7 +240,10 @@ exports.getSuratPermohonanById = asyncHandler(async (req, res) => {
     ["namaLengkap", "nik", "alamat"]
   );
   if (!suratPermohonan) {
-    throw new Error("Surat tidak ditemukan", { cause: 404 });
+    // throw new Error("Surat tidak ditemukan", { cause: 404 });
+    const err = new Error("Surat tidak ditemukan");
+    err.statusCode = 404;
+    return next(err);
   }
   res.json(suratPermohonan);
 });
@@ -257,7 +260,10 @@ exports.updateSuratPermohonan = asyncHandler(async (req, res) => {
     { new: true, runValidators: true }
   );
   if (!suratPermohonan) {
-    throw new Error("Surat tidak ditemukan", { cause: 404 });
+    // throw new Error("Surat tidak ditemukan", { cause: 404 });
+    const err = new Error("Surat tidak ditemukan");
+    err.statusCode = 404;
+    return next(err);
   }
   res.json({ message: "Data Surat Permohonan berhasil diupdate" });
 });
