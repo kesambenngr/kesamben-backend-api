@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
 const kematianSchema = new mongoose.Schema({
-  namapemohon: { type: String, required: true },
+  namaPemohon: { type: String, required: true },
   nikPemohon: { type: String, minLength: 16, maxLength: 16 },
   nokkPemohon: { type: String, minLength: 16, maxLength: 16 },
+  kewarganegaraan: { type: String },
   alamat: {
     dusun: { type: String },
     rt: { type: String },
@@ -16,16 +17,16 @@ const kematianSchema = new mongoose.Schema({
     nama: { type: String },
     tempatLahir: { type: String },
     tanggalLahir: { type: Date },
-    nik: { type: String, minLength: 16, maxLength: 16 },
+    nik: { type: String },
   },
   ibu: {
     nama: { type: String },
     tempatLahir: { type: String },
     tanggalLahir: { type: Date },
-    nik: { type: String, minLength: 16, maxLength: 16 },
+    nik: { type: String },
   },
   kematian: {
-    nik: { type: String, minLength: 16, maxLength: 16, required: true },
+    nik: { type: String },
     namaLengkap: { type: String, required: true },
     tempatLahir: { type: String },
     tanggalLahir: { type: Date },
@@ -33,7 +34,7 @@ const kematianSchema = new mongoose.Schema({
     tanggalKematian: { type: Date, required: true },
     tempatKematian: { type: String, required: true },
     jamKematian: { type: String },
-    SebabKematian: {
+    sebabKematian: {
       type: String,
       enum: [
         "Sakit Biasa/Tua",
@@ -51,7 +52,20 @@ const kematianSchema = new mongoose.Schema({
       default: "Lainnya",
     },
   },
-  saksi: { type: mongoose.Schema.Types.Mixed },
+  saksi: {
+    satu: {
+      nama: { type: String },
+      nik: { type: String },
+      nokk: { type: String },
+      kewarganegaraan: { type: String },
+    },
+    dua: {
+      nama: { type: String },
+      nik: { type: String },
+      nokk: { type: String },
+      kewarganegaraan: { type: String },
+    },
+  },
   tanggalPengajuan: { type: Date, default: Date.now },
 
   fileUrl: { type: String }, // URL untuk dokumen surat

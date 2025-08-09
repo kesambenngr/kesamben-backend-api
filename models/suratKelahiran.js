@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
 const kelahiranSchema = new mongoose.Schema({
-  namapemohon: { type: String, required: true },
+  namaPemohon: { type: String, required: true },
   nikPemohon: { type: String, minLength: 16, maxLength: 16 },
   nokkPemohon: { type: String, minLength: 16, maxLength: 16 },
+  kewarganegaraan: { type: String },
   alamat: {
     dusun: { type: String },
     rt: { type: String },
@@ -17,12 +18,14 @@ const kelahiranSchema = new mongoose.Schema({
     tempatLahir: { type: String },
     tanggalLahir: { type: Date },
     nik: { type: String, minLength: 16, maxLength: 16 },
+    kewarganegaraan: { type: String },
   },
   ibu: {
     nama: { type: String },
     tempatLahir: { type: String },
     tanggalLahir: { type: Date },
     nik: { type: String, minLength: 16, maxLength: 16 },
+    kewarganegaraan: { type: String },
   },
   kelahiran: {
     nik: { type: String, minLength: 16, maxLength: 16 },
@@ -38,7 +41,7 @@ const kelahiranSchema = new mongoose.Schema({
       default: "RS/RB",
     },
     tempatKelahiran: { type: String },
-    tanggalKelahiran: { type: Date },
+    tanggalLahir: { type: Date },
     hariLahir: { type: String },
     jamLahir: { type: String },
     jenisKelahiran: {
@@ -52,10 +55,23 @@ const kelahiranSchema = new mongoose.Schema({
       enum: ["Dokter", "Bidan/Perawat", "Dukun", "Lainnya"],
       default: "Dokter",
     },
-    berat: { type: Number },
-    panjang: { type: Number },
+    beratBayi: { type: Number },
+    panjangBayi: { type: Number },
   },
-  saksi: { type: mongoose.Schema.Types.Mixed },
+  saksi: {
+    satu: {
+      nama: { type: String },
+      nik: { type: String },
+      nokk: { type: String },
+      kewarganegaraan: { type: String },
+    },
+    dua: {
+      nama: { type: String },
+      nik: { type: String },
+      nokk: { type: String },
+      kewarganegaraan: { type: String },
+    },
+  },
   tanggalPengajuan: { type: Date, default: Date.now },
 
   fileUrl: { type: String }, // URL untuk dokumen surat

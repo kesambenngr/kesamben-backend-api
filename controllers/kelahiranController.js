@@ -6,9 +6,47 @@ const asyncHandler = require("express-async-handler");
 // @route: POST /api/surat/suratKelahiran
 // @access: Public
 exports.createKelahiran = asyncHandler(async (req, res) => {
-  const newKelahiran = new Kelahiran(req.body);
-  await newKelahiran.save();
-  res.status(201).json(newKelahiran);
+  const {
+    namaPemohon,
+    nikPemohon,
+    nokkPemohon,
+    alamat,
+    ayah,
+    ibu,
+    kelahiran,
+    saksi,
+  } = req.body;
+
+  try {
+    if (!req.body || Object.keys(req.body).length === 0) {
+      return res
+        .status(400)
+        .json({
+          succes: false,
+          error: { message: "Data tidak boleh kosong!" },
+        });
+    }
+    const dataKelahiran = {
+      namaPemohon,
+      nikPemohon,
+      nokkPemohon,
+      alamat,
+      ayah,
+      ibu,
+      kelahiran,
+      saksi,
+    };
+    const newKelahiran = new Kelahiran(dataKelahiran);
+    await newKelahiran.save();
+    res.status(201).json(newKelahiran);
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: {
+        message: error.message,
+      },
+    });
+  }
 });
 
 //Mendapatkan semua data Kelahiran
