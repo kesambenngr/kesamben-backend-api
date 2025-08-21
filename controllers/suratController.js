@@ -153,8 +153,15 @@ exports.deleteSuratKeluar = asyncHandler(async (req, res) => {
 //@access: private
 exports.createSuratPermohonan = asyncHandler(async (req, res) => {
   const suratPermohonan = new SuratPermohonan(req.body);
-  await suratPermohonan.save();
-  res.json({ message: "Data Surat Permohonan berhasil dibuat" });
+  try {
+    await suratPermohonan.save();
+    res.json({ message: "Data Surat Permohonan berhasil dibuat" });
+  } catch (error) {
+    // Handle validation errors or other issues
+    res.status(500).json({ message: error.message, stack: error.stack });
+    // For other errors, you can log it and return a generic error message
+    console.error(error);
+  }
 });
 
 //get surat permohonan

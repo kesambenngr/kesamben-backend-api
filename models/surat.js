@@ -62,7 +62,8 @@ const SuratPermohonanSchema = new Schema({
     },
   }, // Untuk pemohon dari luar desa
   keterangan: { type: String },
-  keperluan: { type: String, required: true },
+  keperluan: { type: String },
+  tujuan: { type: String },
   tanggalSurat: { type: Date, required: true },
   dataTambahan: { type: mongoose.Schema.Types.Mixed }, // Untuk data tambahan spesifik per jenis surat
   fileUrl: { type: String }, // URL untuk dokumen surat
